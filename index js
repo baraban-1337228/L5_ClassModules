@@ -1,0 +1,6 @@
+import {UrgentTask}  from './child.js'
+const task = [ 
+    new UrgentTask("Сдать лабу",5,1,0),
+    new UrgentTask("Регнуть каточку",1000,0,1)];
+    task[0].show();
+    task[1].show();
