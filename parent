@@ -1,0 +1,27 @@
+import {Task} from './parent.js'
+
+export class UrgentTask extends Task {
+    #isOverdue;
+     constructor (title,priority,completed,isOverdue)
+ {
+    super(String(title), Number(priority), Boolean(completed));
+    this.#isOverdue = Boolean(isOverdue)
+}
+    get isOverdue ()
+    {
+        return this.#isOverdue;
+    }
+    set isOverdue (value)
+    {
+     this.#isOverdue = value;
+    }
+    show (){
+        console.log ({title: this.title,priority: this.priority,completed:this.completed,isOverdue:this.#isOverdue});
+    }
+    delete () {
+        this.#isOverdue = undefined;
+    }
+    static clone (notOrig) { 
+    return new Task (notOrig.title, notOrig.priority,notOrig.completed,notOrig.isOverdue);
+    }
+}
