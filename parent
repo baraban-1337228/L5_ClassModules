@@ -1,27 +1,52 @@
-import {Task} from './parent.js'
-
-export class UrgentTask extends Task {
-    #isOverdue;
-     constructor (title,priority,completed,isOverdue)
+export class Task {
+    #title;
+    #priority;
+    #completed;
+ constructor (title,priority,completed)
  {
-    super(String(title), Number(priority), Boolean(completed));
-    this.#isOverdue = Boolean(isOverdue)
+    this.title = String(title);
+    this.priority = Number(priority);
+    this.completed = Boolean(completed);
+ }
+get title()
+{
+    return this.#title;
 }
-    get isOverdue ()
-    {
-        return this.#isOverdue;
-    }
-    set isOverdue (value)
-    {
-     this.#isOverdue = value;
-    }
-    show (){
-        console.log ({title: this.title,priority: this.priority,completed:this.completed,isOverdue:this.#isOverdue});
-    }
-    delete () {
-        this.#isOverdue = undefined;
-    }
-    static clone (notOrig) { 
-    return new Task (notOrig.title, notOrig.priority,notOrig.completed,notOrig.isOverdue);
-    }
+set title (value) {
+    this.#title = value;
+}
+get priority ()
+{
+    return this.#priority;
+}
+set priority (value)
+{
+   this.#priority = value;
+}
+get completed ()
+{
+    return this.#completed;
+}
+set completed (value)
+{
+ this.#completed = value; 
+}
+show () {
+    console.log ({title: this.#title,priority: this.#priority,completed:this.#completed});
+}
+delete () {
+    this.#title = undefined;
+    this.#priority = undefined;
+    this.#completed = undefined;
+}
+copy () {
+    return this;
+}
+#toggleStatus() {
+    if (this.#completed == true) { this.#completed = false}
+    else if (this.#completed == false) { this.#completed = true} 
+}
+static clone (notOrig) {
+return new Task (notOrig.title, notOrig.priority,notOrig.completed);
+}
 }
